@@ -16,7 +16,10 @@ class Category extends React.Component {
     };
 
     randomCategory = String => {
-        return categories[Math.floor(Math.random() * categories.length)]
+        let randIndex = Math.floor(Math.random() * categories.length)
+        let category = categories[randIndex] ? categories[randIndex] : "Oops - there's no more categories!"
+        categories.splice(randIndex, 1)
+        return category
     };
 
     render() {

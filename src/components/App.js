@@ -1,8 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Timer from './components/Timer';
-import Category from './components/Category';
+import '../App.css';
+import Category from './Category';
 
 function App() {
   return (
