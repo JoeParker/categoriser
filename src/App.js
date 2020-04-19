@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Timer from './components/Timer';
-import categories from './data/Categories';
+import Category from './components/Category';
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
           Learn React
         </a>
       </header>
+      <Category />      
       <Timer />
-      <h1>{categories[Math.floor(Math.random() * categories.length)]}</h1>
     </div>
   );
 }
