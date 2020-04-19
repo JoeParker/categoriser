@@ -7,6 +7,7 @@ import Category from './components/Category';
 function App() {
   return (
     <div className="App">
+      {/*
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -21,6 +22,8 @@ function App() {
           Learn React
         </a>
       </header>
+      */}
+      <h2>The category is...</h2>
       <Category />    
     </div>
   );

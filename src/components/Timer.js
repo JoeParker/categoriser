@@ -1,4 +1,4 @@
-// Simple Timer class by Egor Egorov
+// Modified version of Simple Timer class by Egor Egorov
 // https://medium.com/@650egor/react-30-day-challenge-day-1-simple-timer-df85d0867553
 
 const React = require('react')
@@ -14,7 +14,7 @@ class Timer extends React.Component {
     }
 
     this.startTimer = this.startTimer.bind(this)
-    this.stopTimer = this.stopTimer.bind(this)
+    this.pauseTimer = this.pauseTimer.bind(this)
     this.resetTimer = this.resetTimer.bind(this)
   }
 
@@ -24,9 +24,9 @@ class Timer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if((this.props.startCount !== prevProps.startCount)) {
-      this.stopTimer()
+      this.pauseTimer()
       this.resetTimer()
-      this.sleep(1).then(() => {
+      this.sleep(1).then(() => { // Ensures reset happens before resume
         this.startTimer()
       })
     }
@@ -37,7 +37,7 @@ class Timer extends React.Component {
     this.timer = setInterval(() => this.setState({time: Date.now() - this.state.start}), 1);
   }
 
-  stopTimer() {
+  pauseTimer() {
     this.setState({isOn: false})
     clearInterval(this.timer)
   }
@@ -49,28 +49,26 @@ class Timer extends React.Component {
   render() {
 
     let Start = (this.state.time == 0) ?
-      <button onClick={this.startTimer}>start</button> :
+      <button onClick={this.startTimer}>Start</button> :
       null
 
-    let Stop = (this.state.time == 0 || !this.state.isOn) ?
+    let Pause = (this.state.time == 0 || !this.state.isOn) ?
       null :
-      <button onClick={this.stopTimer}>stop</button>
+      <button onClick={this.pauseTimer}>Pause</button>
 
     let Resume = (this.state.time == 0 || this.state.isOn) ?
       null :
-      <button onClick={this.startTimer}>resume</button>
+      <button onClick={this.startTimer}>Resume</button>
 
     let Reset = (this.state.time == 0 || this.state.isOn) ?
       null :
-      <button onClick={this.resetTimer}>reset</button>
+      <button onClick={this.resetTimer}>Reset</button>
 
     return(
       <div>
         <h3>Timer: {ms(this.state.time)}</h3>
-        {Start}
         {Resume}
-        {Stop}
-        {Reset}
+        {Pause}
       </div>
     )
   }

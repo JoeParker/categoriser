@@ -25,7 +25,7 @@ class Category extends React.Component {
                 {this.state.showCategory && <h1>{this.randomCategory()}</h1>}
                 <button onClick={this.newCategory}>New Category</button>
                 <Timer startCount={this.state.startCount} />
-                <p>{this.state.startCount}</p>
+                <p>Round {this.state.startCount}</p>
             </div>
         )
     }
