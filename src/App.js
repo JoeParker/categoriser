@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Timer from './Timer'
+import Timer from './components/Timer';
+import categories from './data/Categories';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         </a>
       </header>
       <Timer />
+      <h1>{categories[Math.floor(Math.random() * categories.length)]}</h1>
     </div>
   );
 }

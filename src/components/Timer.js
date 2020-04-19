@@ -1,4 +1,4 @@
-// Simply timer class by Egor Egorov
+// Simple Timer class by Egor Egorov
 // https://medium.com/@650egor/react-30-day-challenge-day-1-simple-timer-df85d0867553
 
 const React = require('react')
@@ -52,7 +52,7 @@ class Timer extends React.Component {
 
     return(
       <div>
-        <h3>timer: {ms(this.state.time)}</h3>
+        <h3>Timer: {ms(this.state.time)}</h3>
         {start}
         {resume}
         {stop}
