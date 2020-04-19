@@ -21,8 +21,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <Category />      
-      <Timer />
+      <Category />    
     </div>
   );
 }
