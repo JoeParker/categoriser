@@ -7,12 +7,14 @@ class Category extends React.Component {
 
     state = {
         showCategory: false,
-        startCount: 0
+        startCount: 0,
+        currentCategory: "Click New Category to Begin"
     }
 
     newCategory = () => {
         this.setState({showCategory: true});
         this.setState({startCount: this.state.startCount + 1});
+        this.setState({currentCategory: this.randomCategory()})
     };
 
     randomCategory = String => {
@@ -25,7 +27,7 @@ class Category extends React.Component {
     render() {
         return(
             <div>
-                {this.state.showCategory && <h1>{this.randomCategory()}</h1>}
+                <h1>{this.state.currentCategory}</h1>
                 <button onClick={this.newCategory}>New Category</button>
                 <Timer startCount={this.state.startCount} />
                 <p>Round {this.state.startCount}</p>
