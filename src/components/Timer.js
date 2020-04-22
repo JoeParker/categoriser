@@ -1,6 +1,8 @@
 // Modified version of Simple Timer class by Egor Egorov
 // https://medium.com/@650egor/react-30-day-challenge-day-1-simple-timer-df85d0867553
 
+import audioFile from "../media/gong.wav"
+
 const React = require('react')
 const ms = require('pretty-ms')
 
@@ -50,6 +52,10 @@ class Timer extends React.Component {
 
   getTimeRemaining = () => {
     let rem = this.state.begin - this.state.time
+    if (rem <= 0 && this.state.isOn) { 
+      new Audio(audioFile).play()
+      this.setState({isOn: false}) 
+    }
     return rem > 0 ? rem : 0
   }
 
@@ -74,11 +80,12 @@ class Timer extends React.Component {
     return(
       <div>
         {this.state.time != 0 && <h3>Time Remaining: {ms(this.getTimeRemaining())}</h3>}
-        {Resume}
+        {this.getTimeRemaining() > 0 && Resume}
         {this.getTimeRemaining() > 0 && Pause}
+    {/*<button onClick={() => new Audio(audioFile).play()}>Test Audio</button>*/}
       </div>
     )
   }
 }
 
-module.exports = Timer
+export default Timer
