@@ -8,7 +8,7 @@ class Category extends React.Component {
     state = {
         showCategory: false,
         startCount: 0,
-        currentCategory: "Click New Category to Begin"
+        currentCategory: ""
     }
 
     newCategory = () => {
