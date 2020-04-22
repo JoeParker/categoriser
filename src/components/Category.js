@@ -1,5 +1,4 @@
 import categories from '../data/Categories';
-import Timer from './Timer';
 import TimerSettings from './TimerSettings';
 
 const React = require('react')
