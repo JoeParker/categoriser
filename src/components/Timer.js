@@ -11,7 +11,7 @@ class Timer extends React.Component {
       time: 0,
       isOn: false,
       start: 0,
-      begin: 1000 //240000 // 4 mins -> millis
+      begin: 240000 // 4 mins -> millis
     }
 
     this.startTimer = this.startTimer.bind(this)
