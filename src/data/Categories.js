@@ -15,7 +15,7 @@ const categories = [
     "Types of Bird",
     "Musical Instruments",
     "Classical & Contemporary Composers",
-    "PokÃ©mon",
+    "Pokémon",
     "Tech Companies",
     "Bands & Solo Artists",
     "Famous Painters",
