@@ -11,7 +11,7 @@ class Timer extends React.Component {
       time: 0,
       isOn: false,
       start: 0,
-      begin: 240000 // 4 mins -> millis
+      begin: this.props.begin //240000 // 4 mins -> millis
     }
 
     this.startTimer = this.startTimer.bind(this)
@@ -25,6 +25,7 @@ class Timer extends React.Component {
 
   componentDidUpdate(prevProps) {
     if((this.props.startCount !== prevProps.startCount)) {
+      this.setState({begin: this.props.begin})
       this.pauseTimer()
       this.resetTimer()
       this.sleep(1).then(() => { // Ensures reset happens before resume
@@ -72,7 +73,7 @@ class Timer extends React.Component {
 
     return(
       <div>
-        <h3>Time Remaining: {ms(this.getTimeRemaining())}</h3>
+        {this.state.time != 0 && <h3>Time Remaining: {ms(this.getTimeRemaining())}</h3>}
         {Resume}
         {this.getTimeRemaining() > 0 && Pause}
       </div>

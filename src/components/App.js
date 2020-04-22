@@ -1,7 +1,6 @@
 import React from 'react';
 import '../App.css';
 import Category from './Category';
-import TimerSettings from './TimerSettings';
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
       */}
       <h2>The category is...</h2>
       <Category />
-      <TimerSettings />
     </div>
   );
 }

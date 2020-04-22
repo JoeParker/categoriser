@@ -1,5 +1,6 @@
 import categories from '../data/Categories';
 import Timer from './Timer';
+import TimerSettings from './TimerSettings';
 
 const React = require('react')
 
@@ -29,7 +30,7 @@ class Category extends React.Component {
             <div>
                 <h1>{this.state.currentCategory}</h1>
                 <button onClick={this.newCategory}>New Category</button>
-                <Timer startCount={this.state.startCount} />
+                <TimerSettings startCount={this.state.startCount} />                
                 <p>Round {this.state.startCount}</p>
             </div>
         )
