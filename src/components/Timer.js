@@ -1,7 +1,9 @@
 // Modified version of Simple Timer class by Egor Egorov
 // https://medium.com/@650egor/react-30-day-challenge-day-1-simple-timer-df85d0867553
 
-import audioFile from "../media/gong.wav"
+// https://freesound.org/people/GowlerMusic/sounds/266566/
+import gongFile from "../media/gong.wav"
+import countdownFile from "../media/countdown.mp3"
 
 const React = require('react')
 const ms = require('pretty-ms')
@@ -13,12 +15,18 @@ class Timer extends React.Component {
       time: 0,
       isOn: false,
       start: 0,
-      begin: this.props.begin //240000 // 4 mins -> millis
+      begin: this.props.begin
     }
 
     this.startTimer = this.startTimer.bind(this)
     this.pauseTimer = this.pauseTimer.bind(this)
     this.resetTimer = this.resetTimer.bind(this)
+
+    this.countdownAudio =  new Audio(countdownFile)
+    this.countdownAudio.addEventListener('ended', function () {
+      this.currentTime = 0
+      this.play()
+    }, false)
   }
 
   sleep = (milliseconds) => {
@@ -39,11 +47,13 @@ class Timer extends React.Component {
   startTimer() {
     this.setState({isOn: true, time: this.state.time, start: Date.now() - this.state.time})
     this.timer = setInterval(() => this.setState({time: Date.now() - this.state.start}), 1);
+    this.countdownAudio.play()
   }
 
   pauseTimer() {
     this.setState({isOn: false})
     clearInterval(this.timer)
+    this.countdownAudio.pause()
   }
 
   resetTimer() {
@@ -53,7 +63,9 @@ class Timer extends React.Component {
   getTimeRemaining = () => {
     let rem = this.state.begin - this.state.time
     if (rem <= 0 && this.state.isOn) { 
-      new Audio(audioFile).play()
+      this.countdownAudio.pause()
+      this.countdownAudio.currentTime = 0
+      new Audio(gongFile).play()
       this.setState({isOn: false}) 
     }
     return rem > 0 ? rem : 0
