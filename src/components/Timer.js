@@ -11,7 +11,7 @@ class Timer extends React.Component {
       time: 0,
       isOn: false,
       start: 0,
-      begin: 240000 // 4 mins -> millis
+      begin: 1000 //240000 // 4 mins -> millis
     }
 
     this.startTimer = this.startTimer.bind(this)
@@ -47,6 +47,11 @@ class Timer extends React.Component {
     this.setState({time: 0, isOn: false})
   }
 
+  getTimeRemaining = () => {
+    let rem = this.state.begin - this.state.time
+    return rem > 0 ? rem : 0
+  }
+
   render() {
 
     let Start = (this.state.time === 0) ?
@@ -67,9 +72,9 @@ class Timer extends React.Component {
 
     return(
       <div>
-        <h3>Timer: {ms(this.state.begin - this.state.time)}</h3>
+        <h3>Time Remaining: {ms(this.getTimeRemaining())}</h3>
         {Resume}
-        {Pause}
+        {this.getTimeRemaining() > 0 && Pause}
       </div>
     )
   }
