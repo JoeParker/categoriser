@@ -71,7 +71,15 @@ class Timer extends React.Component {
     return rem > 0 ? rem : 0
   }
 
+
+
   render() {
+
+    let progressBarStyle = {
+      width: window.innerWidth - window.innerWidth / this.state.begin * this.state.time,   
+      height: '10px',
+      backgroundColor: 'hsl('+ (130 - (130 / this.state.begin * this.state.time)) +', 60%, 50%)'
+    }
 
     let Start = (this.state.time === 0) ?
       <button onClick={this.startTimer}>Start</button> :
@@ -91,7 +99,10 @@ class Timer extends React.Component {
 
     return(
       <div>
-        {this.state.time != 0 && <h3>Time Remaining: {ms(this.getTimeRemaining())}</h3>}
+        <div style={progressBarStyle}>
+        </div>
+        {this.state.time !== 0 && this.getTimeRemaining() > 0 && <h3>Time Remaining: {ms(this.getTimeRemaining())}</h3>}
+        {this.getTimeRemaining() <= 0 && <h2>Time's Up!</h2>}
         {this.getTimeRemaining() > 0 && Resume}
         {this.getTimeRemaining() > 0 && Pause}
     {/*<button onClick={() => new Audio(audioFile).play()}>Test Audio</button>*/}
