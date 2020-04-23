@@ -38,16 +38,20 @@ class Timer extends React.Component {
       this.setState({begin: this.props.begin})
       this.pauseTimer()
       this.resetTimer()
+      this.countdownAudio.currentTime = 0
       this.sleep(1).then(() => { // Ensures reset happens before resume
         this.startTimer()
       })
+    }
+    if((this.props.audio !== prevProps.audio)) {
+      this.props.audio ? this.countdownAudio.play() : this.countdownAudio.pause()
     }
   }
 
   startTimer() {
     this.setState({isOn: true, time: this.state.time, start: Date.now() - this.state.time})
     this.timer = setInterval(() => this.setState({time: Date.now() - this.state.start}), 1);
-    this.countdownAudio.play()
+    if (this.props.audio) this.countdownAudio.play()
   }
 
   pauseTimer() {
@@ -99,13 +103,11 @@ class Timer extends React.Component {
 
     return(
       <div>
-        <div style={progressBarStyle}>
-        </div>
+        <div style={progressBarStyle}></div>
         {this.state.time !== 0 && this.getTimeRemaining() > 0 && <h3>Time Remaining: {ms(this.getTimeRemaining())}</h3>}
         {this.getTimeRemaining() <= 0 && <h2>Time's Up!</h2>}
         {this.getTimeRemaining() > 0 && Resume}
         {this.getTimeRemaining() > 0 && Pause}
-    {/*<button onClick={() => new Audio(audioFile).play()}>Test Audio</button>*/}
       </div>
     )
   }

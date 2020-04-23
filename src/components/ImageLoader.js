@@ -31,7 +31,6 @@ class ImageLoader extends React.Component {
         return(
             <div>
                 <img src={this.state.imageUrl} alt={this.props.image} />
-                <p>{this.state.imageUrl}</p>
             </div>
         )
     }

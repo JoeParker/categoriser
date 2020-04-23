@@ -23,6 +23,15 @@ function App() {
       */}
       <h2>The category is...</h2>
       <Category />
+      <a
+        href="https://pixabay.com/"
+        target="_blank">
+        <img 
+          src="https://pixabay.com/static/img/logo.png"
+          alt="Pixabay" 
+          height="25px"
+        />
+      </a>
     </div>
   );
 }
