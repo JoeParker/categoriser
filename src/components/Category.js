@@ -9,8 +9,11 @@ class Category extends React.Component {
     state = {
         showCategory: false,
         startCount: 0,
-        currentCategory: ""
+        currentCategory: "",
+        loadImage: false
     }
+
+    toggleImage = this.toggleImage.bind(this)
 
     newCategory = () => {
         this.setState({showCategory: true});
@@ -25,6 +28,10 @@ class Category extends React.Component {
         return category
     };
 
+    toggleImage(event) {
+        this.setState({loadImage: event.target.checked})
+    }
+
     render() {
         return(
             <div>
@@ -36,7 +43,15 @@ class Category extends React.Component {
                 <p>Round {this.state.startCount}</p>
                 <ImageLoader 
                     image={this.state.currentCategory} 
+                    loadImage={this.state.loadImage}
                 />
+                <p>Category Images<sup>BETA</sup>
+                    <input
+                        type="checkbox"
+                        checked={this.state.loadImage}
+                        onChange={this.toggleImage}
+                    />
+                </p>
             </div>
         )
     }

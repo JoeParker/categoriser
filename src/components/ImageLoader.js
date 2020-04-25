@@ -30,7 +30,7 @@ class ImageLoader extends React.Component {
     render() {
         return(
             <div>
-                <img src={this.state.imageUrl} alt={this.props.image} />
+                {this.props.loadImage && <img src={this.state.imageUrl} alt={this.props.image} />}
             </div>
         )
     }
