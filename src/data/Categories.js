@@ -57,7 +57,7 @@ const categories = [
     "Varieties of Cheese",
     "Varieties of Meat",
     "Fish & Sea Creatures",
-    "Stationary",
+    "Stationery",
     "Laboratory Equipment",
     "Car Parts",
     "Modes of Transport",
